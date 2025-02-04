@@ -415,5 +415,5 @@ $('.countdown').countdown({
 	days: 'Days',
 	hideOnComplete: true
 }, function (container) {
-	alert('Done!');
+	// alert('Done!');
 });
