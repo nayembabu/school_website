@@ -1,3 +1,17 @@
+<?php
+include "pdo.php";
+// SQL query লিখুন
+$sql = "SELECT * FROM home_page_setting";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+
+// ডাটা ফেচ করুন
+$web = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +20,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>KidsAcademy</title>
+	<title>Sadman</title>
 	<link href="images/favicon.png" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
 	<!-- Google fonts -->
@@ -48,11 +62,10 @@
 
 	<!-- Responsive -->
 	<link href="assets/css/responsive.css" rel="stylesheet">
-
-
 </head>
 
-<body id="scroll-top" data-spy="scroll">
+
+<body id="scroll-top">
 
 	<!-- Preloader start here -->
 	<div id="loader-wrapper">
@@ -78,25 +91,104 @@
 
 		<div class="mobile-menu">
 			<ul class="m-menu">
-				<li class="dropdown-submenu"><a href="#">Home</a></li>
-				<li class="dropdown-submenu"><a href="#">About</a></li>
-				<li class="dropdown-submenu"><a href="#">Classes</a></li>
-				<li class="dropdown-submenu"><a href="#">Teachers</a></li>
-				<li class="dropdown-submenu"><a href="#">Blog</a> </li>
+				<li class="dropdown-submenu">
+					<a href="#">Home</a>
+					<ul class="mobile-submenu">
+						<li><a href="index.html">home style 1</a></li>
+						<li><a href="index-2.html">home style 2</a></li>
+						<li><a href="index-3.html">home style 3</a></li>
+						<li><a href="one-page.html">home Onepage</a></li>
+					</ul>
+				</li>
+				<li class="dropdown-submenu">
+					<a href="#">About</a>
+					<ul class="mobile-submenu">
+						<li><a href="about.html">About Style 1</a></li>
+						<li><a href="about-2.html">About Style 2</a></li>
+					</ul>
+				</li>
+				<li class="dropdown-submenu">
+					<a href="#">Classes</a>
+					<ul class="mobile-submenu">
+						<li><a href="classes.html">Classes</a></li>
+						<li><a href="class-single.html">Class Single</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown-submenu">
+					<a href="#">Teachers</a>
+					<ul class="mobile-submenu">
+						<li><a href="teachers.html">Teacher</a></li>
+						<li><a href="teacher-detail.html">Teacher Details</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown-submenu">
+					<a href="#">Pages</a>
+					<ul class="mobile-submenu">
+						<li><a href="gallery.html">Gallery</a></li>
+						<li><a href="gallery-2.html">Gallery 2</a></li>
+						<li><a href="event.html">Event</a></li>
+						<li><a href="event-single.html">Event Single</a></li>
+						<li><a href="404.html">404</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown-submenu">
+					<a href="#">Blog</a>
+					<ul class="mobile-submenu">
+						<li><a href="blog.html">Blog Page</a></li>
+						<li><a href="single.html">Blog Single</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown-submenu">
+					<a href="#">Shop</a>
+					<ul class="mobile-submenu">
+						<li><a href="product.html">Product</a></li>
+						<li><a href="product-details.html">Product Details</a></li>
+						<li><a href="shop-cart.html">Product Cart</a></li>
+					</ul>
+				</li>
 				<li><a href="contact.html">Contact Us</a></li>
 			</ul>
 		</div>
 	</div>
 	<!-- mobile menu ending here -->
 
+	<?php foreach ($web as $info){ ?>
+	<header>
+		<div class="header-top">
+			<div class="container">
+				<div class="ht-area">
+					<ul class="left">
+						<li><span><i class="fa fa-phone" aria-hidden="true"></i></span> Phone : <?php echo $info->school_phone_no; ?></li>
+						<li><span><i class="fa fa-clock-o" aria-hidden="true"></i></span> Opening Time : <?php echo $info->start_times; ?>-<?php echo $info->end_times; ?> 
+						</li>
+						<li><span><i class="fa fa-home" aria-hidden="true"></i></span> Address : <?php echo $info->school_address_full; ?>
+						</li>
+					</ul>
+					<?php } ?>
+					<ul class="right">
+						<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-	<header class="header-four">
-		<div class="main-menu menu-fixed">
-			<nav class="main-menu-area">
-				<div class="container">
-					<div class="row no-gutters align-items-center">
+		<div class="main-menu">
+			<div class="container">
+				<div class="row no-gutters">
+					<nav class="main-menu-area w-100">
 						<div class="logo-area">
-							<a href="index.html"><img src="images/logo.png" alt="logo" class="img-responsive"></a>
+							<a class="" href="index.html"><img src="images/logo.png" alt="logo"
+									class="img-responsive"></a>
 							<button type="button" class="navbar-toggle collapsed d-md-none" data-toggle="collapse"
 								data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 								<span class="sr-only">Toggle navigation</span>
@@ -107,32 +199,120 @@
 						</div>
 
 						<div class="menu-area">
-							<ul class="menu w-100">
-								<li><a href="body" class="page-scroll"><i class="icon flaticon-house-outline"></i>
-										Home</a></li>
-								<li><a href="#facility" class="page-scroll"><i
-											class="icon flaticon-settings"></i>About</a></li>
-								<li><a href="#classes" class="page-scroll"><i
-											class="icon flaticon-symbols"></i>Classes</a></li>
-								<li><a href="#teachers" class="page-scroll"><i
-											class="icon flaticon-student"></i>Teachers</a></li>
-								<li><a href="#gallery" class="page-scroll"><i
-											class="icon flaticon-picture"></i>Gallery</a></li>
-								<li><a href="#blog" class="page-scroll"><i class="icon flaticon-pen"></i>Blog</a></li>
-								<li><a href="#contact" class="page-scroll"><i class="icon flaticon-pen"></i>Contact</a>
+							<ul class="menu-search-cart">
+								<li><span class="menu-search"><i class="fa fa-search" aria-hidden="true"></i></span>
+								</li>
+								<li class="menu_cart dropdown"><span><i class="fa fa-shopping-bag"
+											aria-hidden="true"></i></span>
 								</li>
 							</ul>
+
+							<ul class="menu">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">Home <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li class="active"><a href="index.html">Home Style 01</a></li>
+										<li><a href="index-2.html">Home Style 02</a></li>
+										<li><a href="index-3.html">Home Style 03</a></li>
+										<li><a href="one-page.html">One Page</a></li>
+										<li><a href="boxed-layout.html">Boxed Layout</a></li>
+
+										<li><a href="#">Test Multi Step</a>
+											<ul class="dropdown-menu">
+												<li><a href="#">Menu 2</a></li>
+												<li><a href="#">Menu 2</a></li>
+												<li><a href="#">Menu 2</a></li>
+												<li><a href="#">Menu 2</a>
+													<ul class="dropdown-menu">
+														<li><a href="#">Menu 3</a></li>
+														<li><a href="#">Menu 3</a></li>
+														<li><a href="#">Menu 3</a></li>
+														<li><a href="#">Menu 3</a>
+															<ul class="dropdown-menu">
+																<li><a href="#">Menu 4</a></li>
+																<li><a href="#">Menu 4</a></li>
+																<li><a href="#">Menu 4</a></li>
+																<li><a href="#">Menu 4</a></li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="about.html">About Style 01</a></li>
+										<li><a href="about-2.html">About Style 02</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">Classes <span
+											class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="classes.html">Classes</a></li>
+										<li><a href="class-single.html">Classes Details</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">Teachers <span
+											class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="teachers.html">Teachers</a></li>
+										<li><a href="teacher-details.html">Teacher Details</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="gallery.html">Gallery</a></li>
+										<li><a href="gallery-2.html">Gallery Two</a></li>
+										<li><a href="event.html">Event</a></li>
+										<li><a href="event-single.html">Event Details</a></li>
+										<li><a href="404.html">404 Error</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="blog.html">Blog Page</a></li>
+										<li><a href="single.html">Blog Single</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										aria-haspopup="true" aria-expanded="false">Shop <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="product.html">Product Page</a></li>
+										<li><a href="product-details.html">Product Details</a></li>
+										<li><a href="shop-cart.html">Shop Cart</a></li>
+									</ul>
+								</li>
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+							<form class="menu-search-form">
+								<input type="text" name="search" placeholder="Search here...">
+								<span class="menu-search-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+							</form>
 						</div>
-					</div>
+					</nav>
 				</div>
-			</nav>
-		</div><!-- main menu -->
+			</div>
+		</div>
 	</header>
 	<!-- header End here -->
 
 
 	<!-- Banner Start here -->
-	<section class="banner banner-four">
+	<section class="banner section-notch">
 		<div class="banner-slider swiper-container">
 			<div class="swiper-wrapper">
 				<div class="banner-item slide-one swiper-slide">
@@ -189,7 +369,7 @@
 
 
 	<!-- facility Start here -->
-	<section id="facility" class="facility padding-120">
+	<section class="facility padding-120">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-sm-6 col-xs-12">
@@ -231,7 +411,7 @@
 
 
 	<!-- About Start here -->
-	<section id="about" class="about">
+	<section class="about section-notch">
 		<div class="overlay padding-120">
 			<div class="container">
 				<div class="row">
@@ -243,12 +423,12 @@
 					<div class="col-lg-6">
 						<div class="about-content">
 							<h3>About Our KidsAcademy</h3>
-							<p>Enthusiasticay diseminate competitive oportunities through transparent action Compelngly
-								seize viral schemas through intermandated creative adiea sources. Enthusiasticay
-								plagiarize clientcentered relationships for covalent experiences. Distinctively
-								architect 24/365 services for wireless ebusiness ahosfluorescently Efficiently
-								comunicate coperative methods empowerment awesome athrough Monotonectaly myocardinate
-								cross functional niche markets and an functional scenarios. Interactively utilize.</p>
+							<p>Enthusiasticay diseminate competitive oportunitie through transparent an actions
+								Compelngly seize viral schemas through intermandated creative is adiea sources.
+								Enthusiasticay plagiarize clientcentered relationship for the covalent experiences.
+								Distinctively architect 24/365 service for wireless is ebusiness ahosfluorescently
+								Efficiently comunicate coperative methods of empowerment awesome athrough Monotonectaly
+								myocardinate cross and functional niche markets and an functional.</p>
 							<ul>
 								<li><a href="#" class="button-default">Read More</a></li>
 								<li><a href="#" class="button-default">Buy Now</a></li>
@@ -263,7 +443,7 @@
 
 
 	<!-- Classes Start here -->
-	<section id="classes" class="classes padding-120">
+	<section class="classes padding-120">
 		<div class="container">
 			<div class="section-header">
 				<h3>Our Popular Classes</h3>
@@ -371,7 +551,7 @@
 
 
 	<!-- Teachers Start here -->
-	<section id="teachers" class="teachers">
+	<section class="teachers section-notch">
 		<div class="overlay padding-120">
 			<div class="container">
 				<div class="section-header bg">
@@ -468,7 +648,7 @@
 
 
 	<!-- Gallery Start here -->
-	<section id="gallery" class="gallery padding-120">
+	<section class="gallery padding-120">
 		<div class="container">
 			<div class="section-header">
 				<h3>Our School Gallery</h3>
@@ -576,32 +756,32 @@
 
 
 	<!-- Achievements Start here -->
-	<section class="achievements">
+	<section class="achievements section-notch">
 		<div class="overlay padding-120">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3 col-12">
+					<div class="col-md-3 col-sm-3 col-12">
 						<div class="achievement-item">
 							<i class="icon flaticon-student"></i>
 							<span class="counter">320</span><span>+</span>
 							<p>Total Students</p>
 						</div><!-- achievement item -->
 					</div>
-					<div class="col-md-3 col-12">
+					<div class="col-md-3 col-sm-3 col-12">
 						<div class="achievement-item">
 							<i class="icon flaticon-construction"></i>
 							<span class="counter">12</span>
 							<p>Class Rooms</p>
 						</div><!-- achievement item -->
 					</div>
-					<div class="col-md-3 col-12">
+					<div class="col-md-3 col-sm-3 col-12">
 						<div class="achievement-item">
 							<i class="icon flaticon-school-bus"></i>
 							<span class="counter">24</span>
 							<p>Schools bus</p>
 						</div><!-- achievement item -->
 					</div>
-					<div class="col-md-3 col-12">
+					<div class="col-md-3 col-sm-3 col-12">
 						<div class="achievement-item">
 							<i class="icon flaticon-people"></i>
 							<span class="counter">15</span>
@@ -714,7 +894,7 @@
 
 
 	<!-- Partner Start here -->
-	<section class="partner">
+	<section class="partner section-notch">
 		<div class="overlay padding-120">
 			<div class="container">
 				<div class="section-header bg">
@@ -765,167 +945,103 @@
 	<!-- Partner End here -->
 
 
-	<!-- Blog Start here -->
-	<section id="blog" class="blog blog-two padding-120">
+	<!-- Event Start here -->
+	<section class="event padding-120">
 		<div class="container">
 			<div class="section-header">
-				<h3>From Our Blog</h3>
+				<h3>Don't Miss Our Event</h3>
 				<p>Rapidiously expedite granular imperatives before economically sound web services. Credibly actualize
 					pandemic strategic themeplatform.</p>
 			</div>
-			<div class="blog-items">
-				<div class="row">
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="blog-item">
-							<div class="blog-image">
-								<a href="single.html"><img src="images/blog/blog_01.jpg" alt="blog image"
-										class="img-responsive"></a>
-							</div>
-							<div class="blog-content">
-								<h4><a href="single.html">Actanualze Cententrc Staled</a></h4>
-								<p>Comptely actuaze cent centric coloratons an shang without ainstalled and awesome
-									KidsAcademy PSD Template.</p>
-							</div>
-							<ul>
-								<li><a href="#"><span class="icon flaticon-calendar"></span>22.04.2021</a></li>
-								<li><a href="#"><span class="icon flaticon-like"></span>24 Like</a></li>
-								<li><a href="#"><span class="icon flaticon-chat"></span>24 Comment</a></li>
-							</ul>
-						</div><!-- blog item -->
+			<div class="event-items">
+				<div class="event-item wide">
+					<div class="event-image">
+						<img src="images/event/event_01.jpg" alt="event image" class="img-responsive">
+						<div class="date">
+							<span>24</span>
+							<p>March</p>
+						</div>
 					</div>
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="blog-item">
-							<div class="blog-image">
-								<a href="single.html"><img src="images/blog/blog_02.jpg" alt="blog image"
-										class="img-responsive"></a>
-							</div>
-							<div class="blog-content">
-								<h4><a href="single.html">Actanualze Cententrc Staled</a></h4>
-								<p>Comptely actuaze cent centric coloratons an shang without ainstalled and awesome
-									KidsAcademy PSD Template.</p>
-							</div>
-							<ul>
-								<li><a href="#"><span class="icon flaticon-calendar"></span>22.04.2021</a></li>
-								<li><a href="#"><span class="icon flaticon-like"></span>24 Like</a></li>
-								<li><a href="#"><span class="icon flaticon-chat"></span>24 Comment</a></li>
-							</ul>
-						</div><!-- blog item -->
-					</div>
-					<div class="col-lg-4 col-sm-6 col-xs-12">
-						<div class="blog-item">
-							<div class="blog-image">
-								<a href="single.html"><img src="images/blog/blog_03.jpg" alt="blog image"
-										class="img-responsive"></a>
-							</div>
-							<div class="blog-content">
-								<h4><a href="single.html">Actanualze Cententrc Staled</a></h4>
-								<p>Comptely actuaze cent centric coloratons an shang without ainstalled and awesome
-									KidsAcademy PSD Template.</p>
-							</div>
-							<ul>
-								<li><a href="#"><span class="icon flaticon-calendar"></span>22.04.2021</a></li>
-								<li><a href="#"><span class="icon flaticon-like"></span>24 Like</a></li>
-								<li><a href="#"><span class="icon flaticon-chat"></span>24 Comment</a></li>
-							</ul>
-						</div><!-- blog item -->
-					</div>
-				</div><!-- row -->
-			</div><!-- blog items -->
-		</div><!-- container -->
-	</section><!-- blog -->
-	<!-- Blog End here -->
-
-
-	<!-- Contact Start here -->
-	<section id="contact" class="contact">
-		<div class="contact-map" id="map-canvas"></div>
-		<div class="contact-details padding-120">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-sm-6 col-xs-12">
+					<div class="event-content">
+						<h4>Imagination Classes</h4>
 						<ul>
-							<li class="contact-item">
-								<span class="icon flaticon-signs"></span>
-								<div class="content">
-									<h4>Our Location</h4>
-									<p>218 Sahera Tropical Center Room#7 <br> New Newyork Road 1205</p>
-								</div>
-							</li>
-							<li class="contact-item">
-								<span class="icon flaticon-smartphone"></span>
-								<div class="content">
-									<h4>Phone Number</h4>
-									<p>01923-970212, 01776-502993 <br> +2154897369</p>
-								</div>
-							</li>
-							<li class="contact-item">
-								<span class="icon flaticon-message"></span>
-								<div class="content">
-									<h4>Email Address</h4>
-									<p>hello@labartisan <br> hello@codexcoder.com</p>
-								</div>
+							<li><span><i class="fa fa-clock-o" aria-hidden="true"></i></span>08:00 am - 10:00 am</li>
+							<li><span><i class="fa fa-home" aria-hidden="true"></i></span>218 New Newyork Road Newyork
 							</li>
 						</ul>
+						<p>Dratcaly novate fuly rarched and plications awesome theme education athat plications creative
+							theme education</p>
+						<a href="event-single.html" class="button-default">Join Now</a>
 					</div>
-					<div class="col-lg-8 col-sm-6 col-xs-12">
-						<form class="contact-form">
-							<input type="text" name="name" placeholder="Your Name" class="contact-input">
-							<input type="email" name="email" placeholder="Your Email" class="contact-input">
-							<textarea rows="5" class="contact-input">Your Messages</textarea>
-							<input type="submit" name="submit" value="Send Message" class="contact-button">
-						</form>
+				</div>
+				<div class="event-item">
+					<div class="event-image">
+						<img src="images/event/event_02.jpg" alt="event image" class="img-responsive">
+						<div class="date">
+							<span>24</span>
+							<p>March</p>
+						</div>
 					</div>
-				</div><!-- row -->
-			</div><!-- container -->
-		</div><!-- contact-details -->
-	</section>
-	<!-- Contact End here -->
-
-
-	<!-- Subscribe Start here -->
-	<section class="subscribe subscribe-two">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-5 col-sm-12 col-xs-12">
-					<h3>Join Our Newsletter</h3>
+					<div class="event-content">
+						<h4>Imagination Classes</h4>
+						<ul>
+							<li><span><i class="fa fa-clock-o" aria-hidden="true"></i></span>08:00 am - 10:00 am</li>
+							<li><span><i class="fa fa-home" aria-hidden="true"></i></span>218 New Newyork Road Newyork
+							</li>
+						</ul>
+						<p>Dratcaly novate fuly rarched and plications awesome theme education athat plications creative
+							theme education</p>
+						<a href="event-single.html" class="button-default">Join Now</a>
+					</div>
 				</div>
-				<div class="col-lg-7 col-sm-12 col-xs-12">
-					<form action="/">
-						<input type="text" placeholder="Enter your e-mail here">
-						<input type="submit" value="Subscribe Now">
-					</form>
+				<div class="event-item wide right">
+					<div class="event-image">
+						<img src="images/event/event_03.jpg" alt="event image" class="img-responsive">
+						<div class="date">
+							<span>24</span>
+							<p>March</p>
+						</div>
+					</div>
+					<div class="event-content">
+						<h4>Imagination Classes</h4>
+						<ul>
+							<li><span><i class="fa fa-clock-o" aria-hidden="true"></i></span>08:00 am - 10:00 am</li>
+							<li><span><i class="fa fa-home" aria-hidden="true"></i></span>218 New Newyork Road Newyork
+							</li>
+						</ul>
+						<p>Dratcaly novate fuly rarched and plications awesome theme education athat plications creative
+							theme education</p>
+						<a href="event-single.html" class="button-default">Join Now</a>
+					</div>
 				</div>
-			</div><!-- row -->
+			</div>
 		</div><!-- container -->
-	</section><!-- subscribe -->
-	<!-- Subscribe End here -->
-
+	</section><!-- event blog -->
+	<!-- event End here -->
 
 	<!-- Footer Start here -->
 	<footer>
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-3 col-sm-6 col-xs-12">
+					<div class="col-lg-3 col-md-6 col-xs-12">
 						<div class="footer-item">
 							<div class="title"><img src="images/logo.png" alt="logo" class="img-responsive"></div>
 							<div class="footer-about">
 								<p>Distily enable team driven services through extensive is a relatonships platforms
 									with interactive content. Enthusiastically scale effective.</p>
+									<?php foreach ($web as $info){ ?>
 								<ul>
-									<li><span><i class="fa fa-home" aria-hidden="true"></i></span> New Chokoya Road,
-										USA.</li>
-									<li><span><i class="fa fa-phone" aria-hidden="true"></i></span> +8801 923 970 212,
-										0125897</li>
-									<li><span><i class="fa fa-envelope-o" aria-hidden="true"></i></span> Contact@admin
-										LabArtisan</li>
-									<li><span><i class="fa fa-globe" aria-hidden="true"></i></span> Email@admin
-										LabArtisan</li>
+									<li><span><i class="fa fa-home" aria-hidden="true"></i></span> <?php echo $info->school_address_full; ?>.</li>
+									<li><span><i class="fa fa-phone" aria-hidden="true"></i></span> <?php echo $info->school_phone_no; ?>,<?php echo $info->school_phone_02; ?></li>
+									<li><span><i class="fa fa-envelope-o" aria-hidden="true"></i></span> <?php echo $info->school_email_addressss; ?></li>
+									<li><span><i class="fa fa-globe" aria-hidden="true"></i></span> <?php echo $info->school_email_addressss; ?></li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3 col-sm-6 col-xs-12">
+					<?php } ?>
+					<div class="col-lg-3 col-md-6 col-xs-12">
 						<div class="footer-item">
 							<h4 class="title">Latest News</h4>
 							<ul class="footer-post">
@@ -962,7 +1078,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-3 col-sm-6 col-xs-12">
+					<div class="col-lg-3 col-md-6 col-xs-12">
 						<div class="footer-item">
 							<h4 class="title">Twitter Widget</h4>
 							<ul class="twitter-post">
@@ -990,7 +1106,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-3 col-sm-6 col-xs-12">
+					<div class="col-lg-3 col-md-6 col-xs-12">
 						<div class="footer-item">
 							<h4 class="title">Recent Photos</h4>
 							<ul class="photos">
@@ -1021,10 +1137,10 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-sm-6 col-xs-12">
-						<p>&copy; 2021. Designed By <a href="https://themeforest.net/user/labartisan">LabArtisan</a></p>
+					<div class="col-md-6 col-xs-12">
+						<p>&copy; 2025. Designed By <a href="https://themeforest.net/user/labartisan">SADMAN</a></p>
 					</div>
-					<div class="col-lg-6 col-sm-6 col-xs-12">
+					<div class="col-md-6 col-xs-12">
 						<ul class="social-default">
 							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 							<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
@@ -1081,47 +1197,9 @@
 	<!--coundown-->
 	<script src="assets/js/coundown.js"></script>
 
-	<!-- Google Map -->
-	<script type="text/javascript"
-		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAQlXnmyNPAeN3c3HNyWoUMqDk6bDF31Cg"></script>
-
 	<!-- custom -->
 	<script src="assets/js/custom.js"></script>
-
-	<script type="text/javascript">
-		//Home Page map
-		var styleArray = [
-			{
-				"featureType": "water",
-				"elementType": "geometry.fill",
-				"stylers": [
-					{
-						"color": "#65ac4c"
-					}
-				]
-			}
-		];
-
-		var mapOptions = {
-			center: new google.maps.LatLng(55.864237, -4.251806),
-			zoom: 9,
-			styles: styleArray,
-			scrollwheel: false,
-			backgroundColor: 'transparent',
-			mapTypeControl: false,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
-		var map = new google.maps.Map(document.getElementById("map-canvas"),
-			mapOptions);
-		var myLatlng = new google.maps.LatLng(55.864237, -4.251806);
-		var marker = new google.maps.Marker({
-			position: myLatlng,
-			map: map,
-			icon: 'images/map-icon.png'
-		});
-	</script>
-
-
+	
 </body>
 
 </html>
