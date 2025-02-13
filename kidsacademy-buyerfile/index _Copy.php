@@ -1,12 +1,7 @@
 <?php
 include "pdo.php";
-// SQL query লিখুন
-$sql = "SELECT * FROM home_page_setting";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
+include "query.php";
 
-// ডাটা ফেচ করুন
-$web = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 
 ?>
@@ -310,7 +305,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 	</header>
 	<!-- header End here -->
 
-
+	<?php foreach ($sldr as $info){ ?>
 	<!-- Banner Start here -->
 	<section class="banner section-notch">
 		<div class="banner-slider swiper-container">
@@ -320,9 +315,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="container">
 						<div class="banner-content">
 							<h3>Welcome to KidsAcademy</h3>
-							<h2>Best For Education</h2>
-							<p>Monotonely principle centered ahitectures through and standards magnetic metrics whereas
-								cross functional products.</p>
+							<h2><?php echo $info->slider_names; ?></h2>
+							<p><?php echo $info->slider_desc; ?></p>
 							<ul>
 								<li><a href="#" class="button-default">Read More</a></li>
 								<li><a href="#" class="button-default">Buy Now</a></li>
@@ -335,9 +329,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="container">
 						<div class="banner-content">
 							<h3>Welcome to KidsAcademy</h3>
-							<h2>Best For Education</h2>
-							<p>Monotonely principle centered ahitectures through and standards magnetic metrics whereas
-								cross functional products.</p>
+							<h2><?php echo $info->slider_names; ?></h2>
+							<p><?php echo $info->slider_desc; ?></p>
 							<ul>
 								<li><a href="#" class="button-default">Read More</a></li>
 								<li><a href="#" class="button-default">Buy Now</a></li>
@@ -350,9 +343,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="container">
 						<div class="banner-content">
 							<h3>Welcome to KidsAcademy</h3>
-							<h2>Best For Education</h2>
-							<p>Monotonely principle centered ahitectures through and standards magnetic metrics whereas
-								cross functional products.</p>
+							<h2><?php echo $info->slider_names; ?></h2>
+							<p><?php echo $info->slider_desc; ?></p>
 							<ul>
 								<li><a href="#" class="button-default">Read More</a></li>
 								<li><a href="#" class="button-default">Buy Now</a></li>
@@ -366,7 +358,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 		</div><!-- swiper-container -->
 	</section><!-- banner -->
 	<!-- Banner End here -->
-
+		<?php } ?>
 
 	<!-- facility Start here -->
 	<section class="facility padding-120">
@@ -409,7 +401,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 	</section><!-- facility -->
 	<!-- facility End here -->
 
-
+	<?php foreach ($exp as $info){ ?>
 	<!-- About Start here -->
 	<section class="about section-notch">
 		<div class="overlay padding-120">
@@ -417,18 +409,13 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="about-image">
-							<img src="images/about/about.png" alt="about image" class="img-responsive">
+							<img src="<?php echo $info->about_image_srccc; ?>" alt="about image" class="img-responsive">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="about-content">
-							<h3>About Our KidsAcademy</h3>
-							<p>Enthusiasticay diseminate competitive oportunitie through transparent an actions
-								Compelngly seize viral schemas through intermandated creative is adiea sources.
-								Enthusiasticay plagiarize clientcentered relationship for the covalent experiences.
-								Distinctively architect 24/365 service for wireless is ebusiness ahosfluorescently
-								Efficiently comunicate coperative methods of empowerment awesome athrough Monotonectaly
-								myocardinate cross and functional niche markets and an functional.</p>
+							<h3><?php echo $info->about_full_titlesss; ?></h3>
+							<p><?php echo $info->about_full_des_cription_ssss; ?></p>
 							<ul>
 								<li><a href="#" class="button-default">Read More</a></li>
 								<li><a href="#" class="button-default">Buy Now</a></li>
@@ -441,7 +428,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 	</section><!-- about -->
 	<!-- About End here -->
 
-
+		<?php } ?>
 	<!-- Classes Start here -->
 	<section class="classes padding-120">
 		<div class="container">
@@ -549,7 +536,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 	</section><!-- classes -->
 	<!-- Classes End here -->
 
-
+	<?php foreach ($all_tcr as $info){ ?>
 	<!-- Teachers Start here -->
 	<section class="teachers section-notch">
 		<div class="overlay padding-120">
@@ -563,10 +550,10 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="col-lg-6 col-xs-12">
 						<div class="teacher-item">
 							<div class="teacher-image">
-								<img src="images/teachers/teacher_01.jpg" alt="teacher image" class="img-responsive">
+								<img src="<?php echo $info->teacher_imagesss; ?>" alt="teacher image" class="img-responsive">
 							</div>
 							<div class="teacher-content">
-								<h4>Broklyn Doel <span>Sains Teacher</span></h4>
+								<h4><?php echo $info->teacher_full_names; ?> <span><?php echo $info->teacher_department; ?></span></h4>
 								<ul>
 									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
@@ -574,8 +561,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 									<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
 								</ul>
-								<p>Distinctively initiate and sustainable synergy vaan tactical opportunities. awesome
-									theme ollaboratively.</p>
+								<p><?php echo $info->teacher_descr; ?></p>
 								<a href="teacher-details.html">View Portfolio</a>
 							</div>
 						</div><!-- teacher item -->
@@ -583,10 +569,10 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="col-lg-6 col-xs-12">
 						<div class="teacher-item">
 							<div class="teacher-image">
-								<img src="images/teachers/teacher_02.jpg" alt="teacher image" class="img-responsive">
+								<img src="<?php echo $info->teacher_imagesss; ?>" alt="teacher image" class="img-responsive">
 							</div>
 							<div class="teacher-content">
-								<h4>Alex Jhonson <span>Art Teacher</span></h4>
+							<h4><?php echo $info->teacher_full_names; ?> <span><?php echo $info->teacher_department; ?></span></h4>
 								<ul>
 									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
@@ -594,8 +580,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 									<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
 								</ul>
-								<p>Distinctively initiate and sustainable synergy vaan tactical opportunities. awesome
-									theme ollaboratively.</p>
+								<p><?php echo $info->teacher_descr; ?></p>
 								<a href="teacher-details.html">View Portfolio</a>
 							</div>
 						</div><!-- teacher item -->
@@ -603,10 +588,10 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="col-lg-6 col-xs-12">
 						<div class="teacher-item">
 							<div class="teacher-image">
-								<img src="images/teachers/teacher_03.jpg" alt="teacher image" class="img-responsive">
+								<img src="<?php echo $info->teacher_imagesss; ?>" alt="teacher image" class="img-responsive">
 							</div>
 							<div class="teacher-content">
-								<h4>Robot Jhonson <span>Math Teacher</span></h4>
+							<h4><?php echo $info->teacher_full_names; ?> <span><?php echo $info->teacher_department; ?></span></h4>
 								<ul>
 									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
@@ -614,8 +599,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 									<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
 								</ul>
-								<p>Distinctively initiate and sustainable synergy vaan tactical opportunities. awesome
-									theme ollaboratively.</p>
+								<p><?php echo $info->teacher_descr; ?></p>
 								<a href="teacher-details.html">View Portfolio</a>
 							</div>
 						</div><!-- teacher item -->
@@ -623,10 +607,10 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="col-lg-6 col-xs-12">
 						<div class="teacher-item">
 							<div class="teacher-image">
-								<img src="images/teachers/teacher_04.jpg" alt="teacher image" class="img-responsive">
+								<img src="<p><?php echo $info->teacher_imagesss; ?></p>" alt="teacher image" class="img-responsive">
 							</div>
 							<div class="teacher-content">
-								<h4>Janaton Doe <span>English Teacher</span></h4>
+							<h4><?php echo $info->teacher_full_names; ?> <span><?php echo $info->teacher_department; ?></span></h4>
 								<ul>
 									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
@@ -634,8 +618,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 									<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
 									<li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
 								</ul>
-								<p>Distinctively initiate and sustainable synergy vaan tactical opportunities. awesome
-									theme ollaboratively.</p>
+								<p><?php echo $info->teacher_descr; ?></p>
 								<a href="teacher-details.html">View Portfolio</a>
 							</div>
 						</div><!-- teacher item -->
@@ -645,7 +628,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 		</div><!-- overlay -->
 	</section><!-- teacher -->
 	<!-- Teachers End here -->
-
+		<?php } ?>
 
 	<!-- Gallery Start here -->
 	<section class="gallery padding-120">
@@ -794,7 +777,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 	</section><!-- achievements -->
 	<!-- Achievements End here -->
 
-
+	<?php foreach ($web as $info){ ?>
 	<!-- Testimonial Start here -->
 	<section class="testimonial padding-120">
 		<div class="container">
@@ -808,9 +791,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 					<div class="swiper-wrapper">
 						<div class="testimonial-item swiper-slide">
 							<div class="testimonial-details">
-								<p>Professionally predominate that timely infrastriuctures tops line methodlogies
-									Colaboratively seize scalable achannels before longterm high impact</p>
-								<h4>Joly Smith <span>ui/ux Designer</span></h4>
+							<p><?php echo $info->another_person_speach; ?></p>
+							<h4><p><?php echo $info->another_person_name; ?></p> <span>ui/ux Designer</span></h4>
 								<img src="images/testimonial/testimonial_icon_01.jpg" alt="testimonial icon"
 									class="img-responsive">
 							</div>
@@ -821,9 +803,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 						</div><!-- testimonial-item -->
 						<div class="testimonial-item swiper-slide">
 							<div class="testimonial-details">
-								<p>Professionally predominate that timely infrastriuctures tops line methodlogies
-									Colaboratively seize scalable achannels before longterm high impact</p>
-								<h4>Joly Smith <span>ui/ux Designer</span></h4>
+							<p><?php echo $info->another_person_speach; ?></p>
+							<h4><p><?php echo $info->another_person_name; ?></p> <span>ui/ux Designer</span></h4>
 								<img src="images/testimonial/testimonial_icon_02.jpg" alt="testimonial icon"
 									class="img-responsive">
 							</div>
@@ -834,9 +815,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 						</div><!-- testimonial-item -->
 						<div class="testimonial-item swiper-slide">
 							<div class="testimonial-details">
-								<p>Professionally predominate that timely infrastriuctures tops line methodlogies
-									Colaboratively seize scalable achannels before longterm high impact</p>
-								<h4>Joly Smith <span>ui/ux Designer</span></h4>
+							<p><?php echo $info->another_person_speach; ?></p>
+							<h4><p><?php echo $info->another_person_name; ?></p> <span>ui/ux Designer</span></h4>
 								<img src="images/testimonial/testimonial_icon_03.jpg" alt="testimonial icon"
 									class="img-responsive">
 							</div>
@@ -847,9 +827,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 						</div><!-- testimonial-item -->
 						<div class="testimonial-item swiper-slide">
 							<div class="testimonial-details">
-								<p>Professionally predominate that timely infrastriuctures tops line methodlogies
-									Colaboratively seize scalable achannels before longterm high impact</p>
-								<h4>Joly Smith <span>ui/ux Designer</span></h4>
+							<p><?php echo $info->another_person_speach; ?></p>
+							<h4><p><?php echo $info->another_person_name; ?></p> <span>ui/ux Designer</span></h4>
 								<img src="images/testimonial/testimonial_icon_01.jpg" alt="testimonial icon"
 									class="img-responsive">
 							</div>
@@ -860,9 +839,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 						</div><!-- testimonial-item -->
 						<div class="testimonial-item swiper-slide">
 							<div class="testimonial-details">
-								<p>Professionally predominate that timely infrastriuctures tops line methodlogies
-									Colaboratively seize scalable achannels before longterm high impact</p>
-								<h4>Joly Smith <span>ui/ux Designer</span></h4>
+							<p><?php echo $info->another_person_speach; ?></p>
+							<h4><p><?php echo $info->another_person_name; ?></p> <span>ui/ux Designer</span></h4>
 								<img src="images/testimonial/testimonial_icon_02.jpg" alt="testimonial icon"
 									class="img-responsive">
 							</div>
@@ -873,9 +851,8 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 						</div><!-- testimonial-item -->
 						<div class="testimonial-item swiper-slide">
 							<div class="testimonial-details">
-								<p>Professionally predominate that timely infrastriuctures tops line methodlogies
-									Colaboratively seize scalable achannels before longterm high impact</p>
-								<h4>Joly Smith <span>ui/ux Designer</span></h4>
+								<p><?php echo $info->another_person_speach; ?></p>
+								<h4><p><?php echo $info->another_person_name; ?></p> <span>ui/ux Designer</span></h4>
 								<img src="images/testimonial/testimonial_icon_03.jpg" alt="testimonial icon"
 									class="img-responsive">
 							</div>
@@ -891,7 +868,7 @@ $web = $stmt->fetchAll(PDO::FETCH_OBJ);
 		</div><!-- container -->
 	</section><!-- testimonial -->
 	<!-- Testimonial End here -->
-
+		<?php } ?>
 
 	<!-- Partner Start here -->
 	<section class="partner section-notch">

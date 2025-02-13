@@ -414,6 +414,4 @@ $('.countdown').countdown({
 	day: 'Day',
 	days: 'Days',
 	hideOnComplete: true
-}, function (container) {
-	alert('Done!');
-});
+}, );
