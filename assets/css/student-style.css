@@ -1,0 +1,24 @@
+form#searchForm {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+#searchForm div {
+    flex: 1;
+}
+.Student_searchArea {
+    padding: 20px 15%;
+}
+#searchForm label {
+    font-size: 20px;
+}
+input#sroll, select#sclass {
+    font-size: 22px;
+}
+div#result {
+    background: #e8e8e8;
+    margin: 20px 30%;
+    text-align: center;
+    padding: 2%;
+    border-radius: 10px;
+}
