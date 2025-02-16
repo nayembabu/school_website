@@ -1,15 +1,12 @@
 <?php
-// Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Database connection settings
-$db_host = "localhost"; // Change to your host if needed
+$db_host = "localhost";
 $db_name = "studentweb";
 $db_user = "root";
 $db_pass = "";
 
-// Connect to the database
 try {
     $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8", $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,9 +14,8 @@ try {
     die("Database connection failed: " . $e->getMessage());
 }
 
-// Handle search request via AJAX
 if (isset($_GET['sroll']) && isset($_GET['sclass'])) {
-    header('Content-Type: application/json'); // Move inside to avoid header issues
+    header('Content-Type: application/json'); 
 
     $sroll = $_GET['sroll'];
     $sclass = $_GET['sclass'];
