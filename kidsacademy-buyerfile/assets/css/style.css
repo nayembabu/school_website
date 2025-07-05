@@ -6565,3 +6565,9 @@ header.header-two ul.menu {
 .shop-menu li .shop-submenu li a:hover {
     color: #92278f;
 }
+
+
+/* login section */
+.login-page{
+    background-color:#000;
+}
